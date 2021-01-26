@@ -6,3 +6,21 @@ terraform apply \
 	-var="test_access_key=BBBBBBBBBBBBBBBBBBB" \
 	-var="test_secret_key=SuperSecretKeyForAccountB" \
 	-var="bucket_name=tf-bucket-in-prod" \
+
+
+terraform init
+
+terraform workspace new bcp-workspace-zak
+
+terraform plan -var-file terraform.tfvars.internal  -var aws_elb_name=bcp-rancher-zak -var aws_ec2_name=bcp-rancher-zak  -var rancher2_auth_ad_svc_passwd=XXXXXXXXXXX -var aws_ec2_node_count=1 -var rancher_cluster_name=bcp-rancher-zak -var aws_region_name=“eu-west-1” -var rancher_app_version="2.5.5" -var aws_profile=“zak-iam”
+
+terraform apply -var-file terraform.tfvars.internal  -var aws_elb_name=bcp-rancher-zak -var aws_ec2_name=bcp-rancher-zak  -var rancher2_auth_ad_svc_passwd=xxxxxxxx -var aws_ec2_node_count=1 -var rancher_cluster_name=bcp-rancher-zak -var aws_region_name="eu-west-1" -var rancher_app_version="2.5.5" -var aws_profile=“zak-iam”
+
+
+
+Upgrades
+
+
+terraform plan -var-file terraform.tfvars.internal  -var aws_elb_name=bcp-rancher-zak -var aws_ec2_name=bcp-rancher-zak  -var rancher2_auth_ad_svc_passwd=XXXXXXXXXXXXXX -var aws_ec2_node_count=1 -var rancher_cluster_name=bcp-rancher-zak -var aws_region_name="eu-west-1" -var rancher_app_version="2.5.5" -var aws_profile=“zak-iam”
+
+terraform apply -var-file terraform.tfvars.internal  -var aws_elb_name=bcp-rancher-zak -var aws_ec2_name=bcp-rancher-zak -var rancher2_auth_ad_svc_passwd=XXXXXXXXXXX -var aws_ec2_node_count=1 -var rancher_cluster_name=bcp-rancher-zak-var aws_region_name="eu-west-1" -var rancher_app_version="2.5.6" -var aws_profile="zak-iam”
